@@ -13,6 +13,7 @@ def generate_log(data: list):
                 file.write(f'{entry}\n')
         
         print(f'File written to {file_name}')
+    return file_name
 
 def fetch_data():
     response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -20,9 +21,9 @@ def fetch_data():
         return response.json()
     return {}
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     post = fetch_data()
-    print("Fetched Post Title:", post.get("title", "No title found"))
-    post_data = post.get('body', 'No body found')
-    list_data = post_data.split('\n')
-    generate_log(list_data)
+    body_text = post.get('body', '')
+    if body_text != "":
+        post_body = body_text.split('\n')
+    generate_log(post_body)
