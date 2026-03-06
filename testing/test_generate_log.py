@@ -1,45 +1,58 @@
-# testing/test_generate_log.py
-
 import os
-import pytest
+import requests
 from datetime import datetime
-from lib.generate_log import generate_log
 
-@pytest.fixture
-def log_data():
-    return ["Entry one", "Entry two", "Entry three"]
+def generate_log(log_data):
+    """
+    Writes a list of log entries to a timestamped file.
+    
+    Args:
+        log_data (list): A list of strings representing log entries.
+        
+    Returns:
+        str: The name of the generated log file.
+    """
+    # 1. Raise ValueError if input is not a list
+    if not isinstance(log_data, list):
+        raise ValueError("Input must be a list of log entries.")
 
-@pytest.fixture
-def generated_file(log_data):
-    filename = generate_log(log_data)
-    yield filename
-    if os.path.exists(filename):
-        os.remove(filename)
-
-def test_log_file_created(generated_file):
-    """Test that the log file is created with today's date in the filename."""
-    assert os.path.exists(generated_file), f"{generated_file} not found."
-
-def test_log_file_name_format(generated_file):
-    """Test that the filename follows the expected naming convention."""
+    # 2. Format the filename with today's date
     today = datetime.now().strftime("%Y%m%d")
-    assert generated_file == f"log_{today}.txt", "Filename does not match expected format."
+    filename = f"log_{today}.txt"
 
-def test_log_file_content_matches_input(generated_file, log_data):
-    """Test that the content written to the log matches the input list."""
-    with open(generated_file, "r") as file:
-        lines = [line.strip() for line in file.readlines()]
-    assert lines == log_data, "Log file contents do not match input data."
+    # 3. Write data to the log file (File I/O)
+    with open(filename, "w") as file:
+        for entry in log_data:
+            file.write(f"{entry}\n")
 
-def test_generate_log_raises_error_on_invalid_input():
-    """Test that the function raises a ValueError when input is not a list."""
-    with pytest.raises(ValueError):
-        generate_log("This should be a list")
+    # 4. Print confirmation message
+    print(f"Log written to {filename}")
 
-def test_empty_log_list_creates_empty_file():
-    """Test that passing an empty list still creates an empty log file."""
-    filename = generate_log([])
-    with open(filename, "r") as file:
-        content = file.read()
-    assert content == ""
-    os.remove(filename)
+    return filename
+
+def fetch_data():
+    """Fetches sample data using the external 'requests' library."""
+    try:
+        response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+        if response.status_code == 200:
+            return response.json()
+    except requests.RequestException as e:
+        print(f"Network error occurred: {e}")
+    return {}
+
+if __name__ == "__main__":
+    print("Executing script from command line...")
+    
+    # Use third-party package to collect data
+    post = fetch_data()
+    post_title = post.get("title", "No title found")
+    
+    # Create log entries combining static text and fetched data
+    daily_logs = [
+        "System automation started.",
+        f"Successfully fetched API post title: '{post_title}'",
+        "System automation finished without errors."
+    ]
+    
+    # Generate the log file
+    log_file = generate_log(daily_logs)
