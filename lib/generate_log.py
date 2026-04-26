@@ -1,19 +1,20 @@
+import requests
 from datetime import datetime
-import os
 
-def generate_log(data):
-    # TODO: Implement log generation logic
+def generate_log(log_data):
+    """Generate a log file based on the provided data."""
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+    
+    with open(filename, "w") as file:
+        for entry in log_data:
+            file.write(f"{entry}\n")
+    
+    print(f"Log written to {filename}")
+    return filename  # Return the filename for potential tests
 
-    # STEP 1: Validate input
-    # Hint: Check if data is a list
-
-    # STEP 2: Generate a filename with today's date (e.g., "log_20250408.txt")
-    # Hint: Use datetime.now().strftime("%Y%m%d")
-
-    # STEP 3: Write the log entries to a file using File I/O
-    # Use a with open() block and write each line from the data list
-    # Example: file.write(f"{entry}\n")
-
-    # STEP 4: Print a confirmation message with the filename
-
-    pass
+def fetch_data():
+    """Fetch data from a public API."""
+    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+    if response.status_code == 200:
+        return response.json()
+    return {}
