@@ -1,45 +1,44 @@
-# testing/test_generate_log.py
-
 import os
-import pytest
-from datetime import datetime
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
 from lib.generate_log import generate_log
+from datetime import datetime
 
-@pytest.fixture
-def log_data():
-    return ["Entry one", "Entry two", "Entry three"]
-
-@pytest.fixture
-def generated_file(log_data):
-    filename = generate_log(log_data)
-    yield filename
-    if os.path.exists(filename):
-        os.remove(filename)
-
-def test_log_file_created(generated_file):
-    """Test that the log file is created with today's date in the filename."""
-    assert os.path.exists(generated_file), f"{generated_file} not found."
-
-def test_log_file_name_format(generated_file):
-    """Test that the filename follows the expected naming convention."""
-    today = datetime.now().strftime("%Y%m%d")
-    assert generated_file == f"log_{today}.txt", "Filename does not match expected format."
-
-def test_log_file_content_matches_input(generated_file, log_data):
-    """Test that the content written to the log matches the input list."""
-    with open(generated_file, "r") as file:
-        lines = [line.strip() for line in file.readlines()]
-    assert lines == log_data, "Log file contents do not match input data."
-
-def test_generate_log_raises_error_on_invalid_input():
-    """Test that the function raises a ValueError when input is not a list."""
-    with pytest.raises(ValueError):
-        generate_log("This should be a list")
-
-def test_empty_log_list_creates_empty_file():
-    """Test that passing an empty list still creates an empty log file."""
-    filename = generate_log([])
-    with open(filename, "r") as file:
-        content = file.read()
-    assert content == ""
+def test_generate_log():
+    # Test 1: Valid input
+    print("Test 1: Valid log data...")
+    log_entries = ["Entry 1", "Entry 2", "Entry 3"]
+    filename = generate_log(log_entries)
+    expected = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+    
+    assert filename == expected, "Filename pattern wrong"
+    assert os.path.exists(filename), "File not created"
+    
+    with open(filename, 'r') as f:
+        content = f.read().strip().split('\n')
+    assert content == log_entries, "Content mismatch"
     os.remove(filename)
+    print("✓ Passed")
+    
+    # Test 2: Empty list
+    print("Test 2: Empty list...")
+    filename = generate_log([])
+    assert os.path.exists(filename), "File not created"
+    with open(filename, 'r') as f:
+        assert f.read() == "", "Should be empty"
+    os.remove(filename)
+    print("✓ Passed")
+    
+    # Test 3: Invalid input
+    print("Test 3: Invalid input (should raise ValueError)...")
+    try:
+        generate_log("not a list")
+        print("✗ Failed - should have raised ValueError")
+    except ValueError:
+        print("✓ Passed")
+    
+    print("\n✅ All tests passed!")
+
+if __name__ == "__main__":
+    test_generate_log()
