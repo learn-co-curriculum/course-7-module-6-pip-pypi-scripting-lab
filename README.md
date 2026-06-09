@@ -1,3 +1,45 @@
+# Automation Tool - generate_log
+
+This repository contains a small automation script that demonstrates:
+
+- Using a third-party package (`requests`) to fetch data.
+- Writing results to a dated log file with Python File I/O.
+- Executing as a script from the command line.
+
+## Files
+
+- `lib/generate_log.py` - main script. Exposes `generate_log(data)` and `fetch_data()` and supports CLI execution.
+- `requirements.txt` - pinned dependencies (includes `requests`).
+- `testing/test_generate_log.py` - unit tests for the `generate_log` function.
+
+## Run locally
+
+Create a virtual environment, install dependencies, then run the script:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 lib/generate_log.py
+```
+
+## Run tests
+
+Install `pytest` in the virtualenv and run:
+
+```bash
+pip install pytest
+pytest -q
+```
+
+Note: In some hosted or system-managed Python environments you may need to use a virtual environment (recommended) because system package installs are restricted.
+
+## Submission / CodeGrade
+
+- Ensure `requirements.txt` is present — CodeGrade will install dependencies from it.
+- CodeGrade should run `pytest` to validate tests in `testing/`.
+
+If you want me to make further edits before you finalize the PR, tell me what changes to add.
 
 # Module Lab: Automating Python Projects with Pip, PyPi & Scripting
 
