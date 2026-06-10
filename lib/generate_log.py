@@ -1,21 +1,26 @@
 from datetime import datetime
+import requests
 
-def generate_log(log_data):
+log_data = ["User logged in", "User updated profile", "Report exported"]
 
-    # 1. validate input
-    if not isinstance(log_data, list):
-        raise ValueError("Input must be a list")
+filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # 2. create filename (MUST match test format)
-    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
-
-    # 3. write file (even empty list must create file)
+def write_logs():
     with open(filename, "w") as file:
-        for item in log_data:
-            file.write(f"{item}\n")
+        for entry in log_data:
+            file.write(f"{entry}\n")
 
-    # 4. print confirmation (test expects this behavior)
     print(f"Log written to {filename}")
 
-    # 5. CRITICAL: return filename (this fixes ALL your errors)
-    return filename
+
+def fetch_data():
+    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+    if response.status_code == 200:
+        return response.json()
+    return {}
+
+
+if __name__ == "__main__":
+    write_logs()
+    post = fetch_data()
+    print(post.get("title"))
