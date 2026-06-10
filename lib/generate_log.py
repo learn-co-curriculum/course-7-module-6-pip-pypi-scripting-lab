@@ -1,19 +1,40 @@
+# generate_log.py
+# Automation tool that generates a timestamped log file from a list of entries.
+
 from datetime import datetime
-import os
 
-def generate_log(data):
-    # TODO: Implement log generation logic
 
-    # STEP 1: Validate input
-    # Hint: Check if data is a list
+def generate_log(entries):
+    """
+    Generates a timestamped log file from a list of log entries.
+    
+    Args:
+        entries (list): A list of log entry strings.
+    
+    Returns:
+        str: The filename of the created log file.
+    
+    Raises:
+        ValueError: If entries is not a list.
+    """
+    # Validate input - must be a list
+    if not isinstance(entries, list):
+        raise ValueError("entries must be a list")
 
-    # STEP 2: Generate a filename with today's date (e.g., "log_20250408.txt")
-    # Hint: Use datetime.now().strftime("%Y%m%d")
+    # Create filename with today's date
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # STEP 3: Write the log entries to a file using File I/O
-    # Use a with open() block and write each line from the data list
-    # Example: file.write(f"{entry}\n")
+    # Write entries to file
+    with open(filename, "w") as file:
+        for entry in entries:
+            file.write(f"{entry}\n")
 
-    # STEP 4: Print a confirmation message with the filename
+    # Print confirmation message
+    print(f"Log written to {filename}")
 
-    pass
+    return filename
+
+
+if __name__ == "__main__":
+    log_data = ["User logged in", "User updated profile", "Report exported"]
+    generate_log(log_data)
