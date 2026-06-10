@@ -23,4 +23,4 @@ def fetch_data():
 if __name__ == "__main__":
     write_logs()
     post = fetch_data()
-    print(post.get("title"))
+    print(post.get("title")) 
