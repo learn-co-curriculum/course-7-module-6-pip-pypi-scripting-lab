@@ -1,5 +1,4 @@
 # testing/test_generate_log.py
-
 import os
 import pytest
 from datetime import datetime
