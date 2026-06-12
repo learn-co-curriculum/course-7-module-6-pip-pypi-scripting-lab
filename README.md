@@ -1,123 +1,154 @@
+# Task Automation CLI Tool
 
-# Module Lab: Automating Python Projects with Pip, PyPi & Scripting
+## Overview
 
-## Learning Goals
+This project is a lightweight Python automation tool built using Object-Oriented Programming (OOP), CLI architecture, and external packages. It allows users to create and manage simple tasks and generate log files from structured data. It is designed to demonstrate real-world Python scripting, dependency management, and reproducible environments using `pip` and `requirements.txt`.
 
-- Automate Python tasks using command-line scripts.
-- Use pip to install and manage external packages.
-- Write modular Python scripts with clean entry points.
-- Track dependencies using a requirements.txt file.
-- Generate structured outputs using file I/O techniques.
+---
 
-## Introduction
+## Features
 
-In this lab, you will build a **Python automation tool** that uses pip-installed packages and scriptable logic to automate a real-world task. Your script will:
+* Add tasks via command line (`add-task`)
+* Mark tasks as complete (`complete-task`)
+* List all tasks in terminal (`list-tasks`)
+* Generate log files from structured data
+* Fetch sample data from external API using `requests`
+* Save structured data using File I/O (CSV + TXT files)
+* Fully testable using `pytest`
 
-- Use pip to install third-party packages (e.g., `requests`).
-- Fetch or process external data.
-- Write structured output to a local file.
-- Track all dependencies in `requirements.txt` for reproducibility.
+---
 
-This lab emphasizes automation, scripting practices, and environment management using the standard Python ecosystem.
+## Project Structure
 
-## Setup Instructions
-
-### Fork and Clone the Repository
-
-1. Go to the provided GitHub repository link.
-2. Fork the repository to your GitHub account.
-3. Clone the forked repository to your local machine using:
-
-```bash
-git clone <repo-url>
-cd module-lab-pip-pypi-scripting
+```
+project/
+│
+├── lib/
+│   ├── generate_log.py
+│   ├── task.py
+│   └── task_manager.py
+│
+├── cli.py
+├── testing/
+│   └── test_generate_log.py
+│
+├── requirements.txt
+├── tasks.csv
+└── README.md
 ```
 
-### Install Python and pip
+---
 
-Ensure Python and pip are installed:
+## Installation
+
+### 1. Clone the repository
 
 ```bash
-python --version
-pip --version
+git clone git@github.com:wanja-juma/course-7-module-6-pip-pypi-scripting-lab.git
+cd <project-folder>
 ```
 
-Optionally, create a virtual environment:
+### 2. Create virtual environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate   # Windows
 ```
 
-Install any required dependencies:
+Activate it:
+
+**Mac/Linux**
+
+```bash
+source venv/bin/activate
+```
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Tasks
+---
 
-### Task 1: Define the Problem
+## Running the Application
 
-Your goal is to create a **Python script** that automates a small task:
+### Add a task
 
-- Uses one or more pip-installed packages (e.g., `requests`, `pandas`, `rich`)
-- Outputs data to a `.txt` or `.csv` file using File I/O
-- Logs or prints messages to confirm behavior
-- Is executable from the command line
-- Records dependencies in `requirements.txt`
+```bash
+python cli.py add-task "Finish Python project"
+```
+
+### Add task from API
+
+```bash
+python cli.py add-task
+```
+
+### List tasks
+
+```bash
+python cli.py list-tasks
+```
+
+### Complete a task
+
+```bash
+python cli.py complete-task 1
+```
 
 ---
 
-### Task 2: Determine the Design
+## Running Tests
 
-You will implement a script with the following design principles:
+Make sure pytest is installed:
 
-- Use `pip` to install packages
-- Import modules inside a Python script
-- Wrap logic in `if __name__ == "__main__"` to support reusability
-- Structure output files with filenames that include timestamps
-- Track dependencies using `pip freeze > requirements.txt`
+```bash
+pip install pytest
+```
+
+Run tests:
+
+```bash
+pytest
+```
 
 ---
 
-### Task 3: Develop and Run Your Script
+## Generate Logs
 
-#### Step 1: Create a script called `generate_log.py`
+You can manually run the logging script:
 
-```python
-from datetime import datetime
-
-log_data = ["User logged in", "User updated profile", "Report exported"]
-filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
-
-with open(filename, "w") as file:
-    for entry in log_data:
-        file.write(f"{entry}\n")
-
-print(f"Log written to {filename}")
+```bash
+python lib/generate_log.py
 ```
 
-#### Step 2: Add an API integration using `requests`
+Or use it as a function inside your code:
 
 ```python
-import requests
+from lib.generate_log import generate_log
 
-def fetch_data():
-    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
-    if response.status_code == 200:
-        return response.json()
-    return {}
-
-if __name__ == "__main__":
-    post = fetch_data()
-    print("Fetched Post Title:", post.get("title", "No title found"))
+generate_log(["Event 1", "Event 2"])
 ```
 
-#### Step 3: Track your dependencies
+---
 
-After installing any packages with `pip install ...`, run:
+## Dependencies
+
+All dependencies are tracked in `requirements.txt`:
+
+```
+requests
+pandas
+pytest
+```
+
+Freeze environment:
 
 ```bash
 pip freeze > requirements.txt
@@ -125,24 +156,17 @@ pip freeze > requirements.txt
 
 ---
 
-## Best Practices
+## Technologies Used
 
-- Use clear function names (`fetch_data`, `write_log`) for clarity.
-- Always check file write success with print or logging statements.
-- Avoid hardcoding data—use variables and functions where appropriate.
-- Use virtual environments to isolate dependencies.
-- Wrap script logic in `if __name__ == "__main__"` for script reusability.
+* Python 3
+* OOP (Object-Oriented Programming)
+* argparse (CLI handling)
+* requests (API calls)
+* pytest (testing)
+* File I/O (CSV + TXT handling)
 
 ---
 
-## Conclusion
+## Author
 
-After completing this lab, you will:
-
-✅ Automate tasks with Python scripting  
-✅ Use external packages from PyPi with pip  
-✅ Track project dependencies with `requirements.txt`  
-✅ Generate structured output files from your script  
-✅ Structure projects for portability and collaboration
-
-These scripting and packaging skills are essential for building automation tools and working in modern Python development workflows.
+Built as a Python CLI automation lab project focusing on scripting, pip, and reproducible environments.
