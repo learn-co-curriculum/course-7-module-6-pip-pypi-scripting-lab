@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node (in case of accidental npm runs)
+node_modules/
+package-lock.json
+package.json
+
+# Lab output (timestamped log files)
+log_*.txt
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
