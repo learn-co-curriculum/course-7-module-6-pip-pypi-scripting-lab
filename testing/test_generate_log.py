@@ -1,7 +1,6 @@
 # testing/test_generate_log.py
-
 import os
-import pytest
+import pytest 
 from datetime import datetime
 from lib.generate_log import generate_log
 
