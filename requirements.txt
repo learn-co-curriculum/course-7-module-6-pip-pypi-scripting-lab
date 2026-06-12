@@ -1,0 +1,17 @@
+certifi==2026.5.20
+charset-normalizer==3.4.7
+distlib==0.4.2
+filelock==3.29.1
+idna==3.18
+iniconfig==2.3.0
+packaging==26.2
+pipenv==2026.6.2
+platformdirs==4.10.0
+pluggy==1.6.0
+Pygments==2.20.0
+pytest==9.0.3
+python-discovery==1.4.0
+requests==2.34.2
+setuptools==82.0.1
+urllib3==2.7.0
+virtualenv==21.4.2
