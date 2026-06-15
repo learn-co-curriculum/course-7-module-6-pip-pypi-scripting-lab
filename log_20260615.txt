@@ -1,6 +1,0 @@
-User logged in
-User updated profile
-Report exported
-
-API DATA
-Title: sunt aut facere repellat provident occaecati excepturi optio reprehenderit
