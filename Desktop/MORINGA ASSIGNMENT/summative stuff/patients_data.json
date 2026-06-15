@@ -1,0 +1,110 @@
+{
+    "P1001": {
+        "name": "John Doe",
+        "patient_id": "P1001",
+        "date_of_birth": "1985-06-15",
+        "phone_number": "+1-555-0101",
+        "height": 180.5,
+        "weight": 75.0,
+        "created_at": "2026-06-14T21:47:50.353633"
+    },
+    "P1002": {
+        "name": "Jane Smith",
+        "patient_id": "P1002",
+        "date_of_birth": "1992-11-23",
+        "phone_number": "+1-555-0102",
+        "height": 165.0,
+        "weight": 60.5,
+        "created_at": "2026-06-14T21:47:50.402495"
+    },
+    "P1003": {
+        "name": "Robert Brown",
+        "patient_id": "P1003",
+        "date_of_birth": "1978-04-12",
+        "phone_number": "+1-555-0103",
+        "height": 175.2,
+        "weight": 82.1,
+        "created_at": "2026-06-14T21:47:50.418719"
+    },
+    "P1004": {
+        "name": "Emily Davis",
+        "patient_id": "P1004",
+        "date_of_birth": "2001-09-30",
+        "phone_number": "+1-555-0104",
+        "height": 160.0,
+        "weight": 55.0,
+        "created_at": "2026-06-14T21:47:50.437345"
+    },
+    "P1005": {
+        "name": "Michael Wilson",
+        "patient_id": "P1005",
+        "date_of_birth": "1965-01-05",
+        "phone_number": "+1-555-0105",
+        "height": 185.4,
+        "weight": 95.2,
+        "created_at": "2026-06-14T21:47:50.452049"
+    },
+    "P1006": {
+        "name": "Sarah Miller",
+        "patient_id": "P1006",
+        "date_of_birth": "1988-07-19",
+        "phone_number": "+1-555-0106",
+        "height": 170.1,
+        "weight": 68.4,
+        "created_at": "2026-06-14T21:47:50.469058"
+    },
+    "P1007": {
+        "name": "David Taylor",
+        "patient_id": "P1007",
+        "date_of_birth": "1995-03-22",
+        "phone_number": "+1-555-0107",
+        "height": 178.0,
+        "weight": 77.0,
+        "created_at": "2026-06-14T21:47:50.490132"
+    },
+    "P1008": {
+        "name": "Jessica Moore",
+        "patient_id": "P1008",
+        "date_of_birth": "1982-12-10",
+        "phone_number": "+1-555-0108",
+        "height": 162.5,
+        "weight": 58.2,
+        "created_at": "2026-06-14T21:47:50.515369"
+    },
+    "P1009": {
+        "name": "William Anderson",
+        "patient_id": "P1009",
+        "date_of_birth": "1970-05-14",
+        "phone_number": "+1-555-0109",
+        "height": 182.0,
+        "weight": 88.5,
+        "created_at": "2026-06-14T21:47:50.519195"
+    },
+    "P1010": {
+        "name": "Elizabeth Thomas",
+        "patient_id": "P1010",
+        "date_of_birth": "1999-08-01",
+        "phone_number": "+1-555-0110",
+        "height": 168.0,
+        "weight": 62.0,
+        "created_at": "2026-06-14T21:47:50.552484"
+    },
+    "P1011": {
+        "name": "Christopher Jackson",
+        "patient_id": "P1011",
+        "date_of_birth": "1984-10-25",
+        "phone_number": "+1-555-0111",
+        "height": 176.5,
+        "weight": 80.0,
+        "created_at": "2026-06-14T21:47:50.566924"
+    },
+    "P1012": {
+        "name": "Ashley White",
+        "patient_id": "P1012",
+        "date_of_birth": "1991-02-17",
+        "phone_number": "+1-555-0112",
+        "height": 164.0,
+        "weight": 57.5,
+        "created_at": "2026-06-14T21:47:50.596059"
+    }
+}
