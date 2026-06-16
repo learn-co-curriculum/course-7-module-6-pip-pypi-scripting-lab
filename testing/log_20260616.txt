@@ -1,0 +1,2 @@
+Error: Connection lost
+Info: Retry successful
