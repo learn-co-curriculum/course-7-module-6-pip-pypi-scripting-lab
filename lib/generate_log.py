@@ -1,19 +1,37 @@
+import requests
 from datetime import datetime
-import os
 
-def generate_log(data):
-    # TODO: Implement log generation logic
+def generate_log(log_data):
+    # Make sure we actually get a list before trying to loop through it
+    if not isinstance(log_data, list):
+        raise ValueError("Input must be a list")
 
-    # STEP 1: Validate input
-    # Hint: Check if data is a list
+    # Format the date like YYYYMMDD for the text file name
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # STEP 2: Generate a filename with today's date (e.g., "log_20250408.txt")
-    # Hint: Use datetime.now().strftime("%Y%m%d")
+    # Create the file and write each log entry on a new line
+    with open(filename, "w") as file:
+        for entry in log_data:
+            file.write(f"{entry}\n")
 
-    # STEP 3: Write the log entries to a file using File I/O
-    # Use a with open() block and write each line from the data list
-    # Example: file.write(f"{entry}\n")
+    # Print a quick success message so we know it worked
+    print(f"Log written to {filename}")
+    
+    return filename
 
-    # STEP 4: Print a confirmation message with the filename
+def fetch_data():
+    # Grab some dummy data from the public API
+    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+    if response.status_code == 200:
+        return response.json()
+    return {}
 
-    pass
+# Only run this test code if we execute the script directly
+if __name__ == "__main__":
+    # Test the API fetcher
+    post = fetch_data()
+    print("Fetched Post Title:", post.get("title", "No title found"))
+    
+    # Test the log generator
+    sample_logs = ["User logged in", "User updated profile", "Report exported"]
+    generate_log(sample_logs)
