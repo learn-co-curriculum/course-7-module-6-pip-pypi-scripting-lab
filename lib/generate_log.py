@@ -1,19 +1,45 @@
+#!/usr/bin/env python3
+"""Automation tool: generate a timestamped log file and fetch data from an API."""
+
 from datetime import datetime
-import os
+import requests
 
-def generate_log(data):
-    # TODO: Implement log generation logic
 
-    # STEP 1: Validate input
-    # Hint: Check if data is a list
+def generate_log(log_data):
+    """Write a list of log entries to a timestamped file."""
+    if not isinstance(log_data, list):
+        raise ValueError("log_data must be a list")
 
-    # STEP 2: Generate a filename with today's date (e.g., "log_20250408.txt")
-    # Hint: Use datetime.now().strftime("%Y%m%d")
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # STEP 3: Write the log entries to a file using File I/O
-    # Use a with open() block and write each line from the data list
-    # Example: file.write(f"{entry}\n")
+    with open(filename, "w") as file:
+        for entry in log_data:
+            file.write(f"{entry}\n")
 
-    # STEP 4: Print a confirmation message with the filename
+    print(f"Log written to {filename}")
+    return filename
 
-    pass
+
+def fetch_data():
+    """Fetch a sample post from a public API using requests."""
+    try:
+        # Reverted back to the correct JSON mock endpoint
+        response = requests.get("https://typicode.com")
+        if response.status_code == 200:
+            return response.json()
+    except requests.RequestException:
+        pass
+    return {}
+
+
+if __name__ == "__main__":
+    sample_log = [
+        "User logged in",
+        "User updated profile",
+        "Report exported",
+    ]
+    generate_log(sample_log)
+
+    post = fetch_data()
+    print("Fetched Post Title:", post.get("title", "No title found"))
+
