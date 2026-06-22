@@ -4,7 +4,6 @@ import os
 def generate_log(data):
     # TODO: Implement log generation logic
 
-    # STEP 1: Validate input
     # Hint: Check if data is a list
     if not isinstance(data, list):
         raise ValueError("Input must be a list")
