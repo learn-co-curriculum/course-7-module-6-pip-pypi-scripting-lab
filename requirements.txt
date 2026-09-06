@@ -1,0 +1,6 @@
+# Built-in Python modules only
+# This project uses only Python's standard library:
+# - datetime
+# - json
+# - os
+# No external dependencies required
