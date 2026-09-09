@@ -1,4 +1,3 @@
-
 from datetime import datetime
 import requests
 
@@ -38,7 +37,7 @@ if __name__ == "__main__":
         "Report exported"
     ]
 
-    # Use the third-party requests package required by the lab
+    # Use the third-party requests package
     post = fetch_data()
 
     if post:
@@ -49,4 +48,3 @@ if __name__ == "__main__":
 
     # Generate the log file
     generate_log(log_data)
-
