@@ -1,5 +1,5 @@
-import requests
 from datetime import datetime
+import requests
 
 
 def fetch_data():
@@ -14,13 +14,18 @@ def fetch_data():
 
 
 def generate_log(post):
+    log_data = [
+        "User logged in",
+        "User updated profile",
+        "Report exported",
+        f"Fetched Post Title: {post.get('title', 'No title found')}"
+    ]
+
     filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
     with open(filename, "w") as file:
-        file.write("Automation Tool Log\n")
-        file.write("===================\n")
-        file.write(f"Title: {post.get('title', 'No title found')}\n")
-        file.write(f"Body: {post.get('body', 'No body found')}\n")
+        for entry in log_data:
+            file.write(f"{entry}\n")
 
     return filename
 
@@ -28,8 +33,6 @@ def generate_log(post):
 if __name__ == "__main__":
     post = fetch_data()
 
-    if post:
-        filename = generate_log(post)
-        print(f"Log written to {filename}")
-    else:
-        print("Failed to fetch data.")
+    filename = generate_log(post)
+
+    print(f"Log written to {filename}")
