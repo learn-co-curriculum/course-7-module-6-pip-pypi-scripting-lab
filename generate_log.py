@@ -3,19 +3,15 @@ import requests
 
 
 def generate_log(log_data):
-    # Input must be a list
     if not isinstance(log_data, list):
         raise ValueError("log_data must be a list")
 
-    # Create filename using today's date
     filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # Write each item from the list to the file
     with open(filename, "w") as file:
         for entry in log_data:
             file.write(f"{entry}\n")
 
-    # Confirmation message
     print(f"Log written to {filename}")
 
 
@@ -37,7 +33,6 @@ if __name__ == "__main__":
         "Report exported"
     ]
 
-    # Use the third-party requests package
     post = fetch_data()
 
     if post:
@@ -46,5 +41,4 @@ if __name__ == "__main__":
             post.get("title", "No title found")
         )
 
-    # Generate the log file
     generate_log(log_data)
