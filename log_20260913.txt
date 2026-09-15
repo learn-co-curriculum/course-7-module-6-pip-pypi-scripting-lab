@@ -1,0 +1,3 @@
+❌ Review project guidelines
+❌ Configure virtual environment
+❌ Finish lab implementation
